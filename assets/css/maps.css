@@ -1,0 +1,50 @@
+.body {
+  background-color: black;
+}
+
+.navbar {
+    background: #333;
+    padding: 0px;
+    margin-bottom: 57px;
+  }
+  
+  .nav-collapse {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navbar-nav {
+    color: #818181;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: #333;
+    border-style: none;
+    width: 100%;
+  }
+  
+  .nav-item {
+    width: 100%;
+    color: #b4ae75;
+    filter: brightness(100%);
+  }
+
+  .mButton {
+    width: 33%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background: rgb(72,73,75);
+    color: rgb(0,0,0);
+    border-radius: 0px;
+    padding: 10px 12px;
+    border-color: rgb(18,16,10);
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .mButton:hover {
+    border-color: #b4ae75;
+    background-color: #818181;
+  }
+
+  .mButton:focus {
+    border-color: #b4ae75;
+    background-color: #818181;
+  }

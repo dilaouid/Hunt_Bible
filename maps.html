@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Maps</title>
+    <link rel = "icon" href = "./assets/img/icon.png" type = "image/x-icon">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amarante&amp;display=swap">
+    <link rel="stylesheet" href="./assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./assets/css/maps.css">
+    <link rel="stylesheet" href="./assets/css/Navbar-Centered-Brand-Dark.css">
+    <link rel="stylesheet" href="./assets/css/Vertical-scroll-box.css">
+</head>
+
+<body class="body">
+    <nav class="navbar navbar-light navbar-expand-md py-3 navbar">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon">
+        </span>
+    </button>
+            <div class="collapse navbar-collapse text-truncate nav-collapse" id="navcol-3">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="home.html" style="color: #b4ae75;filter: brightness(109%);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="damage_range.html" style="color: #b4ae75;filter: brightness(109%);">Damage &amp; Range</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Items</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="traits.html" style="color: #b4ae75;filter: brightness(109%);">Traits</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="maps.html" style="color: #b4ae75;filter: brightness(109%);">Maps</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row" style="margin-left:4px;">
+        <div class="row justify-content-center align-items-center">
+            <button class="text-center mButton" id="bayou" onclick="changeMap('bayou')">Bayou</button>
+            <button class="text-center mButton" id="lawson" onclick="changeMap('lawson')">Lawson Delta</button>
+            <button class="text-center mButton" id="desalle" onclick="changeMap('desalle')">DeSalle</button></div>
+    </div>
+    <div class="row justify-content-center align-items-center" style="margin-top: 60px;">
+        <div class="col-auto align-self-center m-auto">
+            <img id="map" class="img-fluid">
+        </div>
+    </div>
+    <script>
+
+        var mData = {
+            map: null,
+        };
+
+        function changeMap(map) {
+            document.getElementById('map').src=`assets/img/${map}_map.png`;
+            mData.map = map;
+        }
+
+        /* ----- ToolTip on Maps ----- */
+
+        
+
+
+
+
+    </script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

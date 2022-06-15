@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Damage & Range</title>
+    <link rel = "icon" href = "assets/img/icon.png" type = "image/x-icon">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amarante&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/damage_range.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/maps.css">
+    <link rel="stylesheet" href="assets/css/Navbar-Centered-Brand-Dark.css">
+    <link rel="stylesheet" href="assets/css/traits.css">
+    <link rel="stylesheet" href="assets/css/Vertical-scroll-box.css">
+</head>
+
+<body class="body">
+    <nav class="navbar navbar-light navbar-expand-md py-3 navbar">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon">
+        </span>
+    </button>
+            <div class="collapse navbar-collapse text-truncate nav-collapse" id="navcol-3">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="home.html" style="color: #b4ae75;filter: brightness(109%);">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="damage_range.html" style="color: #b4ae75;filter: brightness(109%);">Damage &amp; Range</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Items</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="traits.html" style="color: #b4ae75;filter: brightness(109%);">Traits</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="maps.html" style="color: #b4ae75;filter: brightness(109%);">Maps</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row g-0" style="padding: 48px;">
+        <div class="col-xxl-8" style="background: #4a4a4a;">
+            <div class="row g-0 justify-content-center align-items-center" style="border-radius: 0px;padding: 25px;">
+                <div class="col-auto col-xxl-5 offset-0 align-self-center" style="padding: 24px;margin: -4px 0px 0px;margin-top: -2px;">
+                    <select class="border-0 sw" name="large-weapons" id="large-weapon-select" onchange="selectWeapon(this.value, 'large_weapons')">
+                        <option>Large Weapons</option>
+                    </select>
+                    <select class="border-0 sw" name="medium-weapons" id="medium-weapon-select" onchange="selectWeapon(this.value, 'medium_weapons')">
+                        <option>Medium Weapons</option>
+                    </select>
+                    <select class="border-0 sw" name="small-weapons" id="small-weapon-select" onchange="selectWeapon(this.value, 'small_weapons')">
+                        <option>Small Weapons</option>
+                    </select>
+                    <div class="row row-cols-2" style="margin-top: 23px;">
+                        <div class="col-8 d-xl-flex align-items-xl-center">
+                            <input name="amountRange" id="typeRange" class="form-range" type="range" value="10" min="0" max="300" onchange="range(this.value)">
+                        </div>
+                        <div class="col-4 mt-auto">
+                            <input name="amountInput" id="rangeChoice" placeholder="range" class="number" type="number" value="" min="0" max="300" onkeyup="range(this.value)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xxl-3 offset-xl-2">
+                    <button class="btnbp" id="head" onclick="changeImage('head')">Head</button>
+                    <button class="btnbp" id="torso" onclick="changeImage('torso')">Torso</button>
+                    <button class="btnbp" id="stomach" onclick="changeImage('stomach')">Stomach</button>
+                    <button class="btnbp" id="arms" onclick="changeImage('arms')">Arms</button>
+                    <button class="btnbp" id="legs" onclick="changeImage('legs')">Legs</button>
+                </div>
+            </div>
+            <div class="row" style="width: 100%;margin: 0;background: #3b3b3b;margin-top: 34px;margin-bottom: -88px;">
+                <div class="col-auto col-xxl-10" style="width: 100%;padding: 70px;margin-top: -20px;">
+                    <div class="table-responsive" style="width: 100%;border-style: outset;border-color: rgb(255,255,255);">
+                        <table class="table table-borderless">
+                            <thead style="border-style: none;">
+                                <tr style="width: 100%;border-style: none;border-top-style: none;">
+                                    <th class="th">Cost</th>
+                                    <th class="th">Ammunition</th>
+                                    <th class="th">Damage</th>
+                                    <th class="th">Draw Distance</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-style: none;border-top-style: none; width: 100%;">
+                                <tr>
+                                    <td class="td" id="cost"></td>
+                                    <td class="td" id="ammunition"></td>
+                                    <td class="td" id="damage"></td>
+                                    <td class="td" id="distance"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="width: 100%;margin: 0;background: #3b3b3b;">
+                <div class="col-auto col-xxl-10" style="width: 100%;padding: 70px;margin-top: 2px;">
+                    <div class="table-responsive" style="width: 100%;border: 4px groove #ffffff ;">
+                        <table class="table table-borderless">
+                            <thead  style="border-style: none;">
+                                <tr class="width: 100%;border-style: none;border-top-style: none;">
+                                    <th class="th">Distance</th>
+                                    <th class="th">Damage</th>
+                                    <th class="th">Death</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-style: none;border-top-style: none; width: 100%;">
+                                <tr>
+                                    <td class="td" id="distance_dmg"></td>
+                                    <td class="td" id="damage_dmg"></td>
+                                    <td class="td" id="death"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-4 text-center align-self-center">
+            <img id=hunter class="img-fluid" src="assets/img/Hunter.png">
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/weapons.js"></script>
+    <script src="./assets/js/damage.js"  type="text/javascript" ></script>
+    <script src="./assets/js/script.js" type="text/javascript" ></script>
+</body>
+
+<script>
+
+    var data = {
+        bodyPart: null,
+        bodyPartIndex: -1,
+    };
+
+    const bodyParts = ['head', 'torso', 'stomach', 'arms', 'legs'];
+
+    const compactBullet = [4.61, 1, .76, .61, .53];
+    const compactPBullet = [4.61, 1, .76, .61, .53];
+    const compactPSilBullet = [4.61, 1, .76, .61, .53];
+    const compactSilBullet = [4.61, 1, .76, .61, .53];
+    const mediumBullet = [3.84, 1, .76, .61, .53];
+    const mediumPBullet = [3.84, 1, .76, .61, .53];
+    const longBullet = [3.07, 1, .76, .61, .53];
+    const longPBullet = [3.07, 1, .76, .61, .53];
+    const longSilBullet = [3.07, 1, .76, .61, .53];
+    const arrowBullet = [6, 1, .77, .62, .54];
+    const shotgunBullet = [1.5, 1.3, 1.2, .8, .5];
+    const specialNitro = [2, .52, .52, .25, .2];
+    const specialDolch = [3.07, 1, .76, .61, .53];
+    const bomblanceBullet = [1, 1, 1, 1, 1]; // Array body part damage
+
+
+    const ammunitions = {
+        Compact: compactBullet,
+        CompactPistol: compactPBullet,
+        CompactSilPistol: compactPSilBullet,
+        CompactSil: compactSilBullet,
+        Medium: mediumBullet,
+        MediumPistol: mediumPBullet,
+        Long: longBullet,
+        LongSil: longSilBullet,
+        LongPistol: longPBullet,
+        Arrow: arrowBullet,
+        Shotgun: shotgunBullet,
+        SpecialNitro: specialNitro,
+        SpecialDolch: specialDolch,
+        Special: bomblanceBullet,
+    };
+
+    const getCorrectIndex = (range, rangeAmmunitionType) => {
+        let index = -1;
+        for (let i = 1; i < rangeAmmunitionType.length; i++) {
+            if (range <= rangeAmmunitionType[i] && range > rangeAmmunitionType[i - 1])
+                index = i;
+        }
+        return (index);
+    }
+
+    const factorMultiplier = (range, zw, uv) => {
+        let z = zw[0];
+        let w = zw[1];
+
+        let u = uv[0];
+        let v = uv[1];
+
+        return ( ( (z - w) / (u - v) ) * range ) + ( (z - ( (z - w) / (u - v) * u ) ) );
+    }
+
+
+    const EqMultiplier = (range, ammunitionType) => {
+        let multiplier = 1;
+        var rangeAmmunitionType = [];
+        var zw = [];
+        var uv = [];
+        switch (ammunitionType) {
+            case 'Medium':
+                if (range >= 0 && range < 22)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.89], [0.89, 0.75], [0.75, 0.5], [0.44, 0.35], [0.35, 0.24], [.15, .15]];
+                    uv = [ [0,0], [22, 30], [30, 40], [40, 80], [80, 100], [100, 250], [250, 300]];
+                    rangeAmmunitionType = [22, 30, 40, 80, 100, 250];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.15 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'MediumPistol':
+                if (range >= 0 && range < 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.89], [0.89, 0.76], [0.76, 0.6], [0.6, 0.44], [0.44, 0.28], [0.28, 0.23], [.15, .15]];
+                    uv = [ [0,0], [20, 30], [30, 40], [40, 50], [50, 70], [70, 100], [100, 250], [251, 300]];
+                    rangeAmmunitionType = [20, 30, 40, 50, 70, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.15 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'Long':
+                if (range >= 0 && range < 40)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.9], [0.9, 0.75], [0.75, 0.62], [0.62, 0.42], [0.2, 0.2] ];
+                    uv = [ [0,0], [40, 60], [60, 80], [80, 100], [100, 250], [251, 300]];
+                    rangeAmmunitionType = [40, 60, 80, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.2 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'LongPistol':
+                if (range >= 0 && range < 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.67], [0.67, 0.46], [0.46, 0.36], [0.36, 0.28], [0.2, 0.2] ];
+                    uv = [ [0,0], [20, 35], [35, 60], [60, 80], [80, 100], [100, 250], [251, 300]];
+                    rangeAmmunitionType = [20, 35, 60, 80, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.2 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'LongSil':
+                if (range >= 0 && range < 30)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.91], [0.91, 0.75], [0.75, 0.46], [0.46, 0.36], [0.26, 0.2], [0.2, 0.2] ];
+                    uv = [ [0,0], [30, 40], [40, 60], [60, 80], [80, 100], [100, 250], [251, 300]];
+                    rangeAmmunitionType = [30, 40, 60, 80, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.2 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'Compact':
+                if (range >= 0 && range < 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.86], [0.86, 0.58], [0.58, 0.43], [0.43, 0.27], [0.27, 0.22], [0.1, 0.1] ];
+                    uv = [ [0,0], [20, 30], [30, 50], [50, 70], [70, 100], [100, 250], [251, 300] ];
+                    rangeAmmunitionType = [20, 30, 50, 70, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.1 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'CompactPistol':
+                if (range >= 0 && range < 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.84], [0.84, 0.53], [0.53, 0.37], [0.37, 0.25], [0.25, 0.22], [0.1, 0.1] ];
+                    uv = [ [0,0], [20, 30], [30, 50], [50, 70], [70, 100], [100, 250], [251, 300] ];
+                    rangeAmmunitionType = [20, 30, 50, 70, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.1 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'CompactSil':
+                if (range >= 0 && range < 10)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.77], [0.77, 0.39], [0.39, 0.28], [0.28, 0.21], [0.21, 0.2], [0.1, 0.1] ];
+                    uv = [ [0,0], [10, 30], [30, 50], [50, 70], [70, 100], [100, 250], [251, 300] ];
+                    rangeAmmunitionType = [10, 30, 50, 70, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.1 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'Shotgun':
+                if (range >= 0 && range <= 5)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.55], [0.55, 0.1], [0.1, 0], [0, 0] ];
+                    uv = [ [0,0], [5, 10], [10, 20], [20,30], [30, 300] ];
+                    rangeAmmunitionType = [5, 10, 20, 30, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'SpecialNitro':
+                if (range >= 0 && range <= 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.85], [0.85, 0.7], [0.7, 0.55], [0.55, 0.4], [0.4, 0.32], [0.32, 0.25], [0.25, 0.175], [0.175, 0.1], [0.1, 0.1] ];
+                    uv = [ [0,0], [20, 30], [30, 40], [40, 50], [50, 60], [60, 70], [70, 80], [80, 90], [90, 100], [100, 300] ];
+                    rangeAmmunitionType = [20, 30, 40, 50, 60, 70, 80, 90, 100, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.1 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            case 'SpecialDolch':
+                if (range >= 0 && range <= 20)
+                    multiplier = 1;
+                else {
+                    zw = [ [1,1], [1, 0.89], [0.89, 0.76], [0.76, 0.6], [0.6, 0.44], [0.44, 0.28], [0.28, 0.23], [0.15, 0.15] ];
+                    uv = [ [0,0], [20, 30], [30, 40], [40, 50], [50, 70], [70, 100], [100, 250], [251, 300] ];
+                    rangeAmmunitionType = [20, 30, 40, 50, 70, 100, 250, 300];
+                    let index = getCorrectIndex(range, rangeAmmunitionType);
+                    multiplier = index == -1 ? 0.15 : factorMultiplier(range, zw[index], uv[index])
+                }
+                break;
+            default:
+                break;
+        }
+        return (multiplier);
+    };
+
+    function range(value) {
+        document.getElementById('distance_dmg').innerHTML=value;
+        document.getElementById('rangeChoice').value=value;
+        document.getElementById('typeRange').value=value;
+        showDamage();
+    }
+
+    function selectWeapon(e, selectedType) {
+        data = weapons[selectedType].filter( el => el.value === e)[0];
+        Object.keys(data).map( (el) => {
+            if (el === 'damage' || el === 'distance')
+                document.getElementById(`${el}_dmg`).innerHTML = data[el];
+            if (document.getElementById(el))
+                document.getElementById(el).innerHTML = data[el];
+                document.getElementById('distance_dmg').innerHTML=10;
+                document.getElementById('damage_dmg').innerHTML=0;
+        }); //tableau d'en bas
+       ammunitions[data.ammunition.replace(' ', '')];
+       console.log(weapons);
+    }
+
+    const showDamage = () => {
+        const range = document.getElementById('rangeChoice').value;
+        if (data.ammunition) {
+            console.log('+change operates+')
+            const multiplier = EqMultiplier(range, data.ammunition.replace(' ', ''))
+            const dmg = multiplier * (data.damage * ammunitions[data.ammunition.replace(' ', '')][data.bodyPartIndex]).toFixed();  
+            if (isNaN(dmg)) return ;
+            document.getElementById('distance_dmg').innerHTML=range;
+            document.getElementById('damage_dmg').innerHTML=dmg.toFixed(0);
+            if (dmg >= 150)
+                document.getElementById('death').innerHTML="☠";
+            else
+                document.getElementById('death').innerHTML="";
+        }
+    }
+
+    document.getElementById('typeRange').onmousemove = () => {
+        range(document.getElementById('typeRange').value)
+        range(document.getElementById('rangeChoice').value);
+    }
+
+    function changeImage(bodyPart) {
+        bodyParts.forEach( (el, i) => {
+            document.getElementById(el).classList.remove('clickedBtn')
+        });
+        document.getElementById(bodyPart).classList.add('clickedBtn')
+        document.getElementById('hunter').src=`assets/img/Hunter_${bodyPart}.png`;
+        data.bodypart = bodyPart;
+        data.bodyPartIndex = bodyParts.findIndex( (e) => e === bodyPart);
+        showDamage();
+    };
+
+</script>
+
+</html>
