@@ -73,3 +73,11 @@
     color: white;
     box-shadow: 0 0px 0px 0 rgba(241, 205, 205, 0.24), 0 0px 0px 0 rgba(185, 164, 164, 0.19);
   }
+
+  .isDisabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+  

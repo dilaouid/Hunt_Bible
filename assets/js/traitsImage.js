@@ -51,7 +51,7 @@ const traitsImage = [
         title : "Signee",
         name : "signee",
         type : "supportive",
-        description : "",
+        description : "Who cares about this one anyway ? kek Too lazy to put that off I swear",
     },
     {
         title : "Determination",

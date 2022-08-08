@@ -28,11 +28,11 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="home.html" style="color: #b4ae75;filter: brightness(109%);">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="damage_range.html" style="color: #b4ae75;filter: brightness(109%);">Damage &amp; Range</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Items</a></li>
+                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
+                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Items</a></li>
                     <li class="nav-item"><a class="nav-link active" href="traits.html" style="color: #b4ae75;filter: brightness(109%);">Traits</a></li>
                     <li class="nav-item"><a class="nav-link active" href="maps.html" style="color: #b4ae75;filter: brightness(109%);">Maps</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
+                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
                 </ul>
             </div>
         </div>
@@ -56,6 +56,19 @@
                         </div>
                         <div class="col-4 mt-auto">
                             <input name="amountInput" id="rangeChoice" placeholder="range" class="number" type="number" value="" min="0" max="300" onkeyup="range(this.value)">
+                        </div>
+
+                    </div>
+                    <div class="row row-cols-2" style="margin-top: 23px;">
+                        <div class="col-6 d-xl-flex align-items-xl-center">
+                            <select disabled class="border-0 sw" name="specialAmmunitions" id="ammunition-select" onchange=>
+                                <option>Ammo</option>
+                            </select>
+                        </div>
+                        <div class="col-6 d-xl-flex align-items-xl-center">
+                            <select disabled class="border-0 sw" name="penetration" id="penetration-select" onchange= penValue>
+                                <option>Penetration</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -120,7 +133,6 @@
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/weapons.js"></script>
-    <script src="./assets/js/damage.js"  type="text/javascript" ></script>
     <script src="./assets/js/script.js" type="text/javascript" ></script>
 </body>
 
@@ -132,7 +144,7 @@
     };
 
     const bodyParts = ['head', 'torso', 'stomach', 'arms', 'legs'];
-
+    // Array body part damage
     const compactBullet = [4.61, 1, .76, .61, .53];
     const compactPBullet = [4.61, 1, .76, .61, .53];
     const compactPSilBullet = [4.61, 1, .76, .61, .53];
@@ -146,9 +158,20 @@
     const shotgunBullet = [1.5, 1.3, 1.2, .8, .5];
     const specialNitro = [2, .52, .52, .25, .2];
     const specialDolch = [3.07, 1, .76, .61, .53];
-    const bomblanceBullet = [1, 1, 1, 1, 1]; // Array body part damage
+    const bomblanceBullet = [1, 1, 1, 1, 1]; 
 
+    // special ammo // 
+    const mediumFMJ = [3.84, 1, .76, .61, .53];
+    const longFMJ = [3.07, 1, .76, .61, .53];
+    const Spitzer = [3.07, 1, .76, .61, .53];
+    const longSilFMJ = [3.07, 1, .76, .61, .53];
+    const dumdum = 0.9;
+    const incendary = 0.75;
+    const poison = 0.75;
 
+    // penetration // 
+    const penetration = [1, 2, 3, 4, 5, 6, 7, 8]
+    
     const ammunitions = {
         Compact: compactBullet,
         CompactPistol: compactPBullet,
@@ -164,7 +187,18 @@
         SpecialNitro: specialNitro,
         SpecialDolch: specialDolch,
         Special: bomblanceBullet,
+
     };
+
+    const specialAmmunitions = {
+        MediumFMJ: mediumFMJ,
+        LongFMJ: longFMJ,
+        Spitzer: Spitzer,
+        LongSilFMJ: longSilFMJ,
+        Dumdum: dumdum,
+        Incendary: incendary,
+        Poison: poison,
+    }
 
     const getCorrectIndex = (range, rangeAmmunitionType) => {
         let index = -1;
@@ -248,7 +282,7 @@
                 }
                 break;
             case 'Compact':
-                if (range >= 0 && range < 20)
+                if (range >= 0 && range <= 20)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.86], [0.86, 0.58], [0.58, 0.43], [0.43, 0.27], [0.27, 0.22], [0.1, 0.1] ];
@@ -259,7 +293,7 @@
                 }
                 break;
             case 'CompactPistol':
-                if (range >= 0 && range < 20)
+                if (range >= 0 && range <= 20)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.84], [0.84, 0.53], [0.53, 0.37], [0.37, 0.25], [0.25, 0.22], [0.1, 0.1] ];
@@ -270,7 +304,7 @@
                 }
                 break;
             case 'CompactSil':
-                if (range >= 0 && range < 10)
+                if (range >= 0 && range <= 10)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.77], [0.77, 0.39], [0.39, 0.28], [0.28, 0.21], [0.21, 0.2], [0.1, 0.1] ];
@@ -325,6 +359,15 @@
         document.getElementById('typeRange').value=value;
         showDamage();
     }
+    var select = document.getElementById('penetration-select');
+    var penValue = document.createDocumentFragment();
+    penetration.forEach(function(penetration, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = penetration;
+        opt.value = penetration;
+        penValue.appendChild(opt);
+    });
+    select.appendChild(penValue);
 
     function selectWeapon(e, selectedType) {
         data = weapons[selectedType].filter( el => el.value === e)[0];

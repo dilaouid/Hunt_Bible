@@ -315,6 +315,15 @@
         distance: 11,
     },
     {
+        label: "Winfield 1893 Slate",
+        value: "winfieldSlate",
+        cost: "250$",
+        ammunition: "Shotgun",
+        unlock: "Rank 64 + xp",
+        damage: 180,
+        distance: 12,
+    },
+    {
         label: "Winfield M1873",
         value: "winfield",
         cost: "75$",
@@ -612,13 +621,23 @@
         multiplier : 0.53,
     },
     {
+        label: "Caldwell 92 New Army",
+        value: "caldwell92",
+        cost: "90$",
+        ammunition: "CompactPistol",
+        unlock: "Rank 12 +xp",
+        damage: 104,
+        distance: 84,
+        multiplier : 0.53,
+    },
+    {
         label: "Caldwell Conversion Chain Pistol",
         value: "caldwellconversionc",
         cost: "50$",
         ammunition: "CompactPistol",
         unlock: "Rank 22 +xp",
-        damage: 104,
-        distance: 84,
+        damage: 97,
+        distance: 79,
         multiplier : 0.53,
     },
     {
@@ -764,3 +783,4 @@
 ];
 
 const weapons = { large_weapons, medium_weapons, small_weapons }
+
