@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amarante&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/css/damage_range.css">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/maps.css">
     <link rel="stylesheet" href="assets/css/Navbar-Centered-Brand-Dark.css">
-    <link rel="stylesheet" href="assets/css/traits.css">
     <link rel="stylesheet" href="assets/css/Vertical-scroll-box.css">
 </head>
 
@@ -28,11 +25,10 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="home.html" style="color: #b4ae75;filter: brightness(109%);">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="damage_range.html" style="color: #b4ae75;filter: brightness(109%);">Damage &amp; Range</a></li>
-                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
-                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Items</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="weapons_library.html" style="color: #b4ae75;filter: brightness(109%);">Weapons Library</a></li>
                     <li class="nav-item"><a class="nav-link active" href="traits.html" style="color: #b4ae75;filter: brightness(109%);">Traits</a></li>
                     <li class="nav-item"><a class="nav-link active" href="maps.html" style="color: #b4ae75;filter: brightness(109%);">Maps</a></li>
-                    <li class="nav-item isDisabled"><a class="nav-link active" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
+                    <li class="nav-item"><a class="nav-link isDisabled" href="#" style="color: #b4ae75;filter: brightness(109%);">Russian Roulette</a></li>
                 </ul>
             </div>
         </div>
@@ -60,12 +56,12 @@
 
                     </div>
                     <div class="row row-cols-2" style="margin-top: 23px;">
-                        <div class="col-6 d-xl-flex align-items-xl-center">
+                        <div class="col-6 d-xl-flex align-items-xl-center offset-0">
                             <select disabled class="border-0 sw" name="specialAmmunitions" id="ammunition-select" onchange=>
                                 <option>Ammo</option>
                             </select>
                         </div>
-                        <div class="col-6 d-xl-flex align-items-xl-center">
+                        <div class="col-6 d-xl-flex align-items-xl-center offset-0">
                             <select disabled class="border-0 sw" name="penetration" id="penetration-select" onchange= penValue>
                                 <option>Penetration</option>
                             </select>
@@ -128,7 +124,7 @@
             </div>
         </div>
         <div class="col-xxl-4 text-center align-self-center">
-            <img id=hunter class="img-fluid" src="assets/img/Hunter.png">
+            <img id=hunter class="img-fluid" src="assets/img/Hunter.png" style="margin-top:20px">
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -220,14 +216,14 @@
     }
 
 
-    const EqMultiplier = (range, ammunitionType) => {
+    const EqMultiplier = (range, ammunitionType, damage, distance) => {
         let multiplier = 1;
         var rangeAmmunitionType = [];
         var zw = [];
         var uv = [];
         switch (ammunitionType) {
             case 'Medium':
-                if (range >= 0 && range < 22)
+                if (range >= 0 && range <= 22)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.89], [0.89, 0.75], [0.75, 0.5], [0.44, 0.35], [0.35, 0.24], [.15, .15]];
@@ -238,7 +234,7 @@
                 }
                 break;
             case 'MediumPistol':
-                if (range >= 0 && range < 20)
+                if (range >= 0 && range <= 20)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.89], [0.89, 0.76], [0.76, 0.6], [0.6, 0.44], [0.44, 0.28], [0.28, 0.23], [.15, .15]];
@@ -249,7 +245,7 @@
                 }
                 break;
             case 'Long':
-                if (range >= 0 && range < 40)
+                if (range >= 0 && range <= 40)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.9], [0.9, 0.75], [0.75, 0.62], [0.62, 0.42], [0.2, 0.2] ];
@@ -260,7 +256,7 @@
                 }
                 break;
             case 'LongPistol':
-                if (range >= 0 && range < 20)
+                if (range >= 0 && range <= 20)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.67], [0.67, 0.46], [0.46, 0.36], [0.36, 0.28], [0.2, 0.2] ];
@@ -271,7 +267,7 @@
                 }
                 break;
             case 'LongSil':
-                if (range >= 0 && range < 30)
+                if (range >= 0 && range <= 30)
                     multiplier = 1;
                 else {
                     zw = [ [1,1], [1, 0.91], [0.91, 0.75], [0.75, 0.46], [0.46, 0.36], [0.26, 0.2], [0.2, 0.2] ];
@@ -414,6 +410,11 @@
         data.bodyPartIndex = bodyParts.findIndex( (e) => e === bodyPart);
         showDamage();
     };
+
+    const img = document.getElementById('hunter')
+        img.ondragstart = () => {
+        return false;
+        };
 
 </script>
 

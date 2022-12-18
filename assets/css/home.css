@@ -1,8 +1,9 @@
 .body_h {
-  background-color : grey;
+  background-image: url('home_background.jpg');
 }
 
-*.navbar {
+
+.navbar {
   background: #333;
   padding: 0px;
   margin-bottom: 57px;
@@ -27,6 +28,7 @@
   filter: brightness(100%);
 }
 
+
 .text-center{
   border-color: rgb(0,0,0);
   color: rgb(0,0,0);
@@ -36,6 +38,11 @@
   margin-bottom: 30px;
 }
 
+.form-range::-moz-range-thumb {
+  background: #8f0303; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
 .btn {
   background: rgba(13,110,253,0);
   border-style: none;
@@ -43,19 +50,6 @@
   height: 73px;
   margin: -11px;
   margin-bottom: 17px;
-}
-
-.td {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: rgb(255,255,255);
-  text-align: center;
-}
-
-.th {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: rgb(0,0,0);
-  text-align: center;
-
 }
 
 .isDisabled {
