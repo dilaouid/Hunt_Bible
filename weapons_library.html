@@ -31,10 +31,10 @@
     </nav>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 libw align-self-center" id="weapons">
+                <div class="col-auto libw offset-0 align-self-center" id="weapons">
                     <!-- Weapons List HERE -->
                 </div>
-                <div class="col-md-6" style="width: 334px;margin: 15px;">
+                <div class="col-auto justify-content-center align-items-center" style="width: 334px;margin: 15px;">
                     <button class="btnW" id="large_weapons" onclick="changeImage('large_weapons')">Long Weapons</button>
                     <button class="btnW" id="medium_weapons" onclick="changeImage('medium_weapons')">Medium Weapons</button>
                     <button class="btnW" id="small_weapons" onclick="changeImage('small_weapons')">Small Weapons</button>
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 dBlock">
-                <span id="name"></span>
+                <span id="label"></span>
                 <br>
                 <br>
                 <span id="description"></span>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD"></div>
+                                    <div id="damage_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div id="distance_progress_bar" class="progress-barD" aria-valuenow="distance" aria-valuemin="0" aria-valuemax="150"></div>
+                                    <div id="distance_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="rof_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="handling_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="reloadspeed_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="muzzle_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="melee_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="progressD">
-                                    <div class="progress-barD" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="visually-hidden">50%</span></div>
+                                    <div id="hmelee_progress_bar" class="progress-barD"></div>
                                 </div>
                             </div>
                         </div>
@@ -185,15 +185,17 @@
     <script>
 
         const maxValues = {
-            damage: 0,
-            rof: 0,
-            handling: 0,
-            reloadspeed: 0,
-            muzzle: 0,
-            melee: 0,
-            hmelee: 0,
-            distance: 0
+            damage: 150,
+            rof: 100,
+            handling: 100,
+            reloadspeed: 20,
+            muzzle: 800,
+            melee: 100,
+            hmelee: 150,
+            distance: 300
         };
+
+
 
         const progressbar = document.querySelector(".progress-barD");
 
@@ -218,9 +220,10 @@
                 let img = document.createElement('img');
                 let parentDiv = document.createElement('div');
                 // quand tu crée un element tu dois l'ajouter au dom avec appendelement
+
                 parentDiv.classList.add('wcss', 'libw');
                 img.setAttribute('type', el.type);
-                img.setAttribute('name', el.label);
+                img.setAttribute('label', el.label);
                 img.setAttribute('description', el.description);
                 img.setAttribute('damage', el.damage);
                 img.setAttribute('distance', el.distance);
@@ -236,21 +239,19 @@
                 weaponsdiv.appendChild(img)
 
                 img.onclick = () => {
-                    console.log(img);
-                    const attr = ["name", "description", "damage", "distance", "rof", 
+                    const attr = ["label", "description", "damage", "distance", "rof", 
                         "handling", "reloadspeed", "muzzle", "melee", "hmelee"];
-
                     attr.map( (at, i) => {
                         document.getElementById(at).innerHTML = el[at]
-                        if (at != "name" && at != "description"){
-                            console.log(at);
-                            const progress = document.getElementById('distance_progress_bar');
-                            /* const progress = document.getElementById(at+'_progress_bar'); */
-                            progress.style.width = '50%'; // tu fais ton calcul de pourcentage ici
+                        if (at != "label" && at != "description"){
+                            const progress = document.getElementById(at+'_progress_bar');
+                            progress.style.width = ((100 * el[at]) / maxValues); // tu fais ton calcul de pourcentage ici
+                            console.log(attr);
+                            console.log(100 * el[at] / maxValues[at]);
                         }
                     });
 
-
+                    
 
                     //document.getElementById('distance_progress_bar').setAttribute('aria-valuenow', el.distance)
                 }
@@ -285,7 +286,7 @@
         };
 
         function showDescription(value){
-        document.getElementById('name').innerHTML=value;
+            document.getElementById('name').innerHTML=value;
         }
 
         function selectElement(selector){
@@ -295,7 +296,7 @@
             selectElement('.search-results').innerHTML = "";
         }
         function getResults(){
-            const search = selectElement('.searchbar').value.toLowerCase();
+            const search = selectElement('.searchbar').value.toLocaleLowerCase();
             let all = document.getElementsByClassName('weaponImg');
             let reload = false;
 
