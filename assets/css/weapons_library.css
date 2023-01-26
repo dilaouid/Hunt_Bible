@@ -195,9 +195,9 @@
   background: #000;
 }
 
-.progressD .progress-barD{
+.progress-barD{
   height: 100%;
-  width: 0;
+  width: 100%;
   border-radius: 0.2rem;
 
   background: #97000a;

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -192,11 +190,9 @@
             muzzle: 800,
             melee: 100,
             hmelee: 150,
-            distance: 300
+            distance: 250,
         };
-
-
-
+        
         const progressbar = document.querySelector(".progress-barD");
 
         const changeProgress = (progress) => {
@@ -245,9 +241,10 @@
                         document.getElementById(at).innerHTML = el[at]
                         if (at != "label" && at != "description"){
                             const progress = document.getElementById(at+'_progress_bar');
-                            progress.style.width = ((100 * el[at]) / maxValues); // tu fais ton calcul de pourcentage ici
+                            progress.style.width = `${((100 * el[at]) / maxValues[at])}%`;// tu fais ton calcul de pourcentage ici
                             console.log(attr);
                             console.log(100 * el[at] / maxValues[at]);
+                            console.log(progress);
                         }
                     });
 
@@ -303,9 +300,9 @@
             search.substring()
 
             Array.from(all).forEach( (el,i) => {
-                if (reload == false && el.name.toLocaleLowerCase().includes(search) === false && el.classList.contains('hidden-search') === false) {
+                if (reload == false && el.getAttribute("label").toLocaleLowerCase().includes(search) === false && el.classList.contains('hidden-search') === false) {
                     el.classList.add('hidden-search');
-                } else if (reload == true || el.name.toLocaleLowerCase().includes(search) === true && el.classList.contains('hidden-search') === true) {
+                } else if (reload == true || el.getAttribute("label").toLocaleLowerCase().includes(search) === true && el.classList.contains('hidden-search') === true) {
                     el.classList.remove('hidden-search');
                 }
             });
