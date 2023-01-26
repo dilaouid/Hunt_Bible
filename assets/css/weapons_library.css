@@ -200,8 +200,6 @@
   width: 0px;
   max-width: 240px;
   border-radius: 0.2rem;
-
   background: #97000a;
-
   transition: width 0.4s ease;
 }
