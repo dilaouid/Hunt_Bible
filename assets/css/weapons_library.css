@@ -189,7 +189,7 @@
   margin-top: -10px;
   margin-bottom: 15px;
   height: 0.5rem;
-  width: 100%;
+  width: 240px;
   border-radius: 0.2rem;
 
   background: #000;
@@ -197,7 +197,8 @@
 
 .progress-barD{
   height: 100%;
-  width: 100%;
+  width: 0px;
+  max-width: 240px;
   border-radius: 0.2rem;
 
   background: #97000a;

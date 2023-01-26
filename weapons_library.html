@@ -188,11 +188,11 @@
             handling: 100,
             reloadspeed: 20,
             muzzle: 800,
-            melee: 100,
+            melee: 150,
             hmelee: 150,
             distance: 250,
         };
-        
+
         const progressbar = document.querySelector(".progress-barD");
 
         const changeProgress = (progress) => {
@@ -241,10 +241,12 @@
                         document.getElementById(at).innerHTML = el[at]
                         if (at != "label" && at != "description"){
                             const progress = document.getElementById(at+'_progress_bar');
-                            progress.style.width = `${((100 * el[at]) / maxValues[at])}%`;// tu fais ton calcul de pourcentage ici
-                            console.log(attr);
+                            progress.style.width = (parseInt(el[at]) + 90) + 'px'; // tu fais ton calcul de remplissage de la barre ici
+                            // el[at] + x
+                            // x étant la différence entre la maxvalue et la width de ta class progressD
+                            /* console.log(attr);
                             console.log(100 * el[at] / maxValues[at]);
-                            console.log(progress);
+                            console.log(progress); */
                         }
                     });
 
